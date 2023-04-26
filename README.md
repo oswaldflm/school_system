@@ -5,7 +5,7 @@
 - Custom Reports
   The logic evaluation is bases from the Nicaragua school.
 
-The tools development used in this sofware are
+#The tools development used in this software are
 
 - Ruby on Rails
 - React
