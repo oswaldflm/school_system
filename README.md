@@ -1,4 +1,4 @@
-# school_system is free software with different modules like
+# School System is free software with different modules like:
 
 - Attendance
 - Grades
