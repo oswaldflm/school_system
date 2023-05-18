@@ -26,6 +26,6 @@ echo "=========================="
 docker-compose run --rm school bundle exec rails db:migrate
 
 echo "=========================="
-echo "Execute container rails
+echo "Execute container rails"
 echo "=========================="
 docker-compose up -d
