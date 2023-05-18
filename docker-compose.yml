@@ -14,13 +14,13 @@ services:
       - '3000:3000'
     volumes:
       - node_modules:/school/node_modules
-      - ./:/school
+      - ./:/school/
       - gem_cache:/usr/local/bundle/gems
       - db_data:/var/lib/postgresql/data
     env_file: .env
     environment:
       RAILS_ENV: development
-      BUNDLE_APP_CONFIG: /school/.bundle
+      BUNDLE_APP_CONFIG: ./.bundle
   postgresdb:
     image: postgres
     volumes:

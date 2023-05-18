@@ -1,4 +1,4 @@
-FROM ruby:3.2.2
+FROM ruby:3.1.4
 
 RUN apt-get update -qq \
   && apt-get install -y curl build-essential libpq-dev \
@@ -10,7 +10,7 @@ RUN apt-get update -qq \
   apt-get install imagemagick
 
 WORKDIR /school/
-COPY ./Gemfile* ./
+COPY /Gemfile* ./
 
 RUN gem install bundler -v 2.4.12
 
@@ -18,14 +18,14 @@ RUN bundle check || bundle install
 
 RUN bundle install
 
-RUN bundle config set --local path 'vendor/cache'
+# RUN bundle config set --local path 'vendor/cache'
 
 # COPY /package.json ./
 # COPY /yarn.* ./
 
 # RUN yarn install --check-files
 
-COPY ./ /school/
+COPY / ./
 
 # Want to add entry points
 # COPY docker-entrypoint.sh sidekiq-entrypoint.sh /usr/bin
