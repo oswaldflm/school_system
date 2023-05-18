@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  school:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    depends_on:
+      - postgresdb
+      - redis
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0"
+    ports:
+      - '3000:3000'
+    volumes:
+      - node_modules:/school/node_modules
+      - ./:/school
+      - gem_cache:/usr/local/bundle/gems
+      - db_data:/var/lib/postgresql/data
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+      BUNDLE_APP_CONFIG: /school/.bundle
+  postgresdb:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file: .env
+    ports:
+      - '5432:5432'
+  redis:
+    image: redis
+  sidekiq:
+    build:
+      context: .
+    depends_on:
+      - school
+      - postgresdb
+      - redis
+    volumes:
+      - node_modules:/school/node_modules
+      - ./:/school
+      - gem_cache:/usr/local/bundle/gems
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+    command: bundle exec sidekiq
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+volumes:
+  db_data:
+  node_modules:
+  gem_cache:

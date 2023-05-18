@@ -9,9 +9,8 @@ RUN apt-get update -qq \
   apt-get update && apt-get install -y nodejs yarn && \
   apt-get install imagemagick
 
-WORKDIR /app/
-
-COPY /Gemfile* ./
+WORKDIR /school/
+COPY ./Gemfile* ./
 
 RUN gem install bundler -v 2.4.12
 
@@ -21,12 +20,12 @@ RUN bundle install
 
 RUN bundle config set --local path 'vendor/cache'
 
-COPY /package.json ./
-COPY /yarn.lock ./
+# COPY /package.json ./
+# COPY /yarn.* ./
 
-RUN yarn install --check-files
+# RUN yarn install --check-files
 
-COPY / ./
+COPY ./ /school/
 
 # Want to add entry points
 # COPY docker-entrypoint.sh sidekiq-entrypoint.sh /usr/bin
