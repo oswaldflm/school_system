@@ -10,6 +10,7 @@ RUN apt-get update -qq \
   apt-get install imagemagick
 
 WORKDIR /school/
+
 COPY /Gemfile* ./
 
 RUN gem install bundler -v 2.4.12
