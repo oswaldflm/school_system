@@ -20,7 +20,7 @@ services:
     env_file: .env
     environment:
       RAILS_ENV: development
-      BUNDLE_APP_CONFIG: ./.bundle
+      BUNDLE_APP_CONFIG: /school/.bundle
   postgresdb:
     image: postgres
     volumes:
@@ -39,7 +39,7 @@ services:
       - redis
     volumes:
       - node_modules:/school/node_modules
-      - ./:/school
+      - ./:/school/
       - gem_cache:/usr/local/bundle/gems
     env_file: .env
     environment:

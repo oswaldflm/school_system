@@ -1,10 +1,10 @@
 #!/bin/sh
 rails_container=school
 echo "=========================="
-echo "budle install"
+echo "bundle install and build"
 echo "=========================="
-docker-compose run --rm $rails_container bundle install
-
+docker-compose run --rm $rails_container bundler install
+docker-compose build
 echo "=========================="
 echo "rails db:migrate"
 echo "=========================="
