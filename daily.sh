@@ -4,7 +4,7 @@ echo "=========================="
 echo "bundle install and build"
 echo "=========================="
 docker-compose run --rm $rails_container bundler install
-docker-compose build
+docker-compose build --no-cache
 echo "=========================="
 echo "rails db:migrate"
 echo "=========================="
