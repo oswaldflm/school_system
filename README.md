@@ -1,24 +1,10 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<h2>School System is free software with different modules like:</h2>
+Attendance
+Grades
+Custom Reports The logic evaluation is bases from the Nicaragua school.
+<h2>The tools development used in this software are </h2>
+Ruby on Rails
+React
+Postgress
+Docker
+Kubernate for deploy
