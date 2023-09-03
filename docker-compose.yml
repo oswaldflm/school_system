@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  school_system:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    depends_on:
+      - postgresdb_school
+      - redis
+      # - webpack_school
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+    ports:
+      - '3000:3000'
+    volumes:
+      - node_modules:/node_modules
+      - .:/school_system
+      - gem_cache:/usr/local/bundle/gems
+      - db_data:/var/lib/postgresql/data
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+      BUNDLE_APP_CONFIG: /.bundle
+  postgresdb_school:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file: .env
+    ports:
+      - '5433:5433'
+  redis:
+    image: redis
+  sidekiq:
+    build:
+      context: .
+    depends_on:
+      - school_system
+      - postgresdb_school
+      - redis
+    volumes:
+      - node_modules:/node_modules
+      - .:/school_system
+      - gem_cache:/usr/local/bundle/gems
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+    command: bundle exec sidekiq
+  # webpack_school:
+  #   build:
+  #     context: .
+  #   command: ./bin/webpack
+  #   ports:
+  #     - 8888:8888
+  #   volumes:
+  #     - .:/school_system
+  #     - node_modules:/node_modules
+  #   environment:
+  #     RAILS_ENV: development
+  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+volumes:
+  db_data:
+  node_modules:
+  gem_cache:
