@@ -9,7 +9,7 @@ RUN apt-get update -qq \
   apt-get update && apt-get install -y nodejs yarn && \
   apt-get install imagemagick
 
-WORKDIR /app/
+WORKDIR /school_system
 
 COPY /Gemfile* ./
 
