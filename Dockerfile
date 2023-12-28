@@ -21,8 +21,8 @@ RUN bundle install
 
 RUN bundle config set --local path 'vendor/cache'
 
-# COPY /package.json ./
-# COPY /yarn.lock ./
+COPY /package.json ./
+COPY /yarn.lock ./
 
 RUN yarn install --check-files
 
