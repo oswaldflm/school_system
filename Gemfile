@@ -70,3 +70,5 @@ group :test do
 end
 
 gem "jsbundling-rails", "~> 1.2"
+
+gem "foreman", "~> 0.87.2"
