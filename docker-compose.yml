@@ -10,7 +10,7 @@ services:
       - postgresdb_school
       - redis
       # - webpack_school
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+    command: bash -c "rm -f tmp/pids/server.pid && bin/dev"
     ports:
       - '3000:3000'
     volumes:
@@ -46,18 +46,6 @@ services:
     environment:
       RAILS_ENV: development
     command: bundle exec sidekiq
-  # webpack_school:
-  #   build:
-  #     context: .
-  #   command: ./bin/webpack
-  #   ports:
-  #     - 8888:8888
-  #   volumes:
-  #     - .:/school_system
-  #     - node_modules:/node_modules
-  #   environment:
-  #     RAILS_ENV: development
-  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
   mailcatcher:
     image: schickling/mailcatcher
     ports:
