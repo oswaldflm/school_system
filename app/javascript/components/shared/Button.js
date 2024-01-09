@@ -1,7 +1,7 @@
 import React from "react";
+import Button from '@mui/material/Button';
 
 const Buttons = () => {
-  return <p>example button sharing for angel
-  </p>
+  return <Button variant="contained">Hello world</Button>;
 }
 export default Buttons;
