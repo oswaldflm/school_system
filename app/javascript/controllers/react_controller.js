@@ -6,7 +6,7 @@ import Welcome from "../components/home/Welcome"
 // Connects to data-controller="react"
 export default class extends Controller {
   connect() {
-    console.log("i am here")
+    console.log("oswald")
     const app = document.getElementById("welcome")
     createRoot(app).render(<Welcome />)
   }
